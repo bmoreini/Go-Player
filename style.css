@@ -1,0 +1,266 @@
+/* Layout */
+
+#body {
+  min-width:820px;
+}
+
+#centerer {
+  margin:0 auto;
+  width:850px;
+}
+
+#console{
+  float:left;
+}
+
+#sidebar{
+	width:180px;
+	display:block;
+  padding: 10px;
+}
+
+#board {
+  padding:10px;
+  width: 600px;
+	float:left;
+  margin-left:10px;
+  padding-left:20px;
+}
+
+#rows {
+	background-image:url("Blank Board.jpg");
+	background-repeat: no-repeat;
+	height: 593px;
+	width:600px;
+	margin:20px auto;
+	padding-left:5px;
+	text-align:left;
+	float:left;
+}
+
+html {
+    background-color: rgb(0, 0, 0);
+}
+
+#sidebar{
+	background-color:white;
+	border-radius:5px;
+}
+
+#rows {
+	background-image:url("Blank Board.jpg");
+	background-repeat: no-repeat;
+	text-align:left;
+}
+
+#sidebar div {
+	width:150px;
+	text-align:center;
+}
+
+#sidebar div h2 {
+	margin:5px auto;
+	width:180px;
+	text-align:center;
+	display:block;
+}
+
+#sidebar div .content{
+	border:1px solid black;
+	border-radius:5px;
+	margin:5px;
+	padding:10px;
+}
+
+#scoreboard{}
+
+#messages{}
+
+#deadstones{}
+
+#board, #makeGuess {
+  border-radius:5px;
+  font-size: 25px;
+  background-color: white;
+	text-align:center;
+}
+
+#colors {
+	padding-left:0px;
+	margin-left:-10px;
+}
+
+#colors li {
+	list-style:none;
+	display:inline-block;
+	text-indent:none;
+}
+
+select {
+  width: 40px;
+	height:40px;
+  font-size: 25px;
+  background-color:white;
+  padding-top: 0px;
+	margin:0 auto;
+	border-radius:50px;
+}
+
+select:hover {
+	border:1px solid green;
+}
+
+.clicker {
+	color:blue;
+	font-style:underline;
+}
+
+.clicker:hover {
+	color:red;
+}
+
+.hide {
+	display:none;
+}
+
+#board.quitted {
+  background-color:red;
+  color:white;
+}
+#board.won {
+  background-image:url('https://media.giphy.com/media/13vfiD0VBeksYE/giphy.gif');
+}
+
+button {
+  height:80px;
+	width:80px;
+	margin-left:-20px;
+	border-radius:50%;
+	border:2px solid gray;
+}
+
+button#next {
+  background: -4px -5px black url("button.png") no-repeat;
+  margin-left:10px;
+}
+
+button#last {
+  background: -4px -5px black url("button-red.png") no-repeat;
+}
+
+button#recorder, button#save {
+  border:2px solid white;
+  margin:0 auto;
+  padding:none!important;
+  width:43px;
+  height:43px;
+}
+
+button#recorder{
+  background: -1px -1px transparent url("record.png") no-repeat;
+}
+
+button#save{
+  background: -1px -1px transparent url("stop.png") no-repeat;
+}
+
+button#recorder {
+  background: -1px -1px transparent url("record.png") no-repeat;
+  border:2px solid white;
+  margin:0 auto;
+  padding:none!important;
+  width:43px;
+  height:43px;
+}
+
+button#recorder:hover {
+  border:2px solid red;
+}
+
+#record .content {
+  padding:0!important;
+  border:none!important;
+  margin-left:10px!important;
+}
+button:hover {
+	border:2px solid yellow;
+}
+
+button:focus, select:focus {
+	outline:0;
+}
+
+/* Graphic Mastermind Model CSS */
+.e { background-color:transparent; border:2px solid transparent;}
+.w { background-color:white; }
+.b { background-color:black;color:white; }
+.captured { background-color:red;}
+
+#rows li {
+    list-style:none;
+    list-style-type:none;
+    list-style-image:none;
+	text-indent:none;
+}
+
+.row {
+    margin-left:-30px;
+    clear:both;
+    padding-top:15px;
+	
+}
+
+button:active, select:active {
+	border:none;
+}
+
+.row li, .content li{
+  display:inline-block;
+  margin-right: 21px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.content {
+	padding:10px;
+	font-size:12pt;
+}
+
+#deadstones .content li {
+	width:10px;
+	height:10px;
+}
+
+#deadstones .content {
+	background-color:#ccc;
+    text-align:left;
+}
+
+#deadstones .content ul {
+    padding:0;
+	margin:0;
+
+}
+#deadstones .content ul li {
+	margin:0 5px 0 0!important;
+	padding:0!important;
+}
+
+.highlight {
+	background-color:#f7ed96;
+	padding:10px;
+	font-size:12pt;
+	border:1px solid black;
+	border-radius:5px;
+	margin:5px;
+}
+
+form .element {
+  width:145px;
+}
+.req {
+  font-weight:bold;
+  color:red;
+}
