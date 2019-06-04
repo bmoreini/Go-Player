@@ -19,11 +19,9 @@ var capStones = document.getElementById("thisCapturedStones");
 function recordTurns(){
 	builder=true;
 	recForm.classList.remove("hide");
-	fresh="n";
-	/*
-	let fresh=prompt("New game (n) or add to this one (a)?")
-	*/
+	let fresh=prompt("New game (n) or add to this one (a)?");
 	if (fresh=="n"){
+		buildBoard();
 		turns=[];
 		gameMessages=[];
 		turn=-1;
@@ -72,10 +70,10 @@ function saveTurn(){
 	}
 	if (newCaps.value) {
 		let tempCaptures=parseCaptures(newCaps.value);
+		let oldCaptures=newCaptures;
 		//tM=tM.concat(JSON.stringify(tempCaptures));
 	}
 	else turns[turn].push([]);
-	//alert(turn+" : "+JSON.stringify(turns));
 	nextTurn();
 	refreshSubmitForm();
 }
@@ -113,6 +111,8 @@ function parseCaptures(capsCount){
 	and https://stackoverflow.com/questions/21012580/is-it-possible
 	-to-write-data-to-file-using-only-javascript/21012689 */
 function saveGame() {
+	showTurns();
+	/*
 	var FileSaver = require('file-saver');
 	var fileContent = JSON.stringify(turns, null, 4);
 	var fileName=prompt("Name the game - no spaces");
@@ -131,4 +131,5 @@ function saveGame() {
 		};
 		console.log("File "+fileName+"messages.json has also been created");
 	});
+	*/
 }

@@ -21,6 +21,7 @@ var backwards = false;
 
 function setup() {
 	title.innerHTML = "Go!";
+	title.setAttribute("onclick","showTurns()");
 	buttonElement.innerHTML = "Next";
 	turns=firstGame(turns);
 	buildBoard();
@@ -71,6 +72,10 @@ function firstGame(turns){
 	return turns;
 }
 
+function showTurns(){
+	alert(JSON.stringify(turns));
+}
+
 function buildBoard(){
 	while (rows.hasChildNodes()) {
 		rows.removeChild(rows.firstChild);
@@ -102,7 +107,7 @@ function nextTurn(){
 		// place new stone with color of current turn or empty if going backwards
 		placeStone(turn);
 		// check for new captures going forwards and remove them, leaving red circles
-		if (backwards==false  && turns[turn][3][0]>-1) oldCaptures=removeCaptures(turn);
+		if (backwards==false && turns[turn][3][0]>-1) oldCaptures=removeCaptures(turn);
 		// check for old captures going backwards and add red circles
 		else if (backwards==true && turns[turn-2][3][0]>-1) oldCaptures=addRedCaptures(turn-2);
 		// check for new captures going backwards and add black or white circles
