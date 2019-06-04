@@ -35,19 +35,19 @@
             <button id="recorder" onclick="recordTurns()"></button>
           </div>
         </div>
-        
+
         <div id = "recording" class="hide">
           <div id="recForm" class="content">
-          <form id="submitTurn">			
+          <form id="submitTurn">
             <label id="thisTurnLabel" class="description">Turn (Row, Column) </label>
-            <input name="thisTurn" id="thisTurn"  class="element text small" type="text" maxlength="255" value=""> 
+            <input name="thisTurn" id="thisTurn"  class="element text small" type="text" maxlength="255" value="">
             <label class="description"><em># captures</em></label>
-            <input name="thisCaptures" id="thisCaptures" class="element text small" type="text" maxlength="255" value=""> 
+            <input name="thisCaptures" id="thisCaptures" class="element text small" type="text" maxlength="255" value="">
             <label class="description"><em>captured Stones</em></label>
-            <input name="thisCapturedStones" id="thisCapturedStones"class="element text small" type="text" maxlength="255" value=""> 
+            <input name="thisCapturedStones" id="thisCapturedStones"class="element text small" type="text" maxlength="255" value="">
             <label class="description"><em>message</em> </label>
-            <textarea name="thisMessage" id="thisMessage"  class="element textarea medium"></textarea> 
-            <input id="saveForm" class="button_text" type="submit" name="submit" onclick="saveATurn()" value="Submit">
+            <textarea name="thisMessage" id="thisMessage"  class="element textarea medium"></textarea>
+            <input id="saveForm" class="button_text" type="button" name="submit" onclick="saveTurn()" value="Submit">
 	        </form>
           </div>
         </div>
@@ -58,7 +58,7 @@
   <div id = "board">
     <h1 id="title">Web Helper Not Loaded</h1>
     <ul id = "rows">
-    </ul><!-- rows --> 
+    </ul><!-- rows -->
     <button id="last" onclick="reverseMain()">last</button>
     <button id="next" onclick="main()">Next</button>
   </div><!--board-->
@@ -68,5 +68,15 @@
 </div><!--centerer-->
 <script language="javascript" type="text/javascript" src="webhelper.js"></script>
 <script language="javascript" type="text/javascript" src="recorder.js"></script>
+<script language="javascript" type="text/javascript" src="FileSaver.js"></script>
+<script type="module">
+  import { saveAs } from "./FileSaver.js";
+  var newLayer = new ol.layer.Tile({
+    source: new ol.source.OSM({
+    url: './FileSaver.js',
+    crossOrigin: null
+    })
+  });
+</script>
 </body>
 </html>

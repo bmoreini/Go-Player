@@ -77,10 +77,7 @@ function saveTurn(){
 	else turns[turn].push([]);
 	//alert(turn+" : "+JSON.stringify(turns));
 	nextTurn();
-	console.trace();
-	alert("Did it go?");
-	alert("Did it go?");
-	//refreshSubmitForm();
+	refreshSubmitForm();
 }
 
 /* saveaPosition - by Mr. M*/
@@ -112,7 +109,26 @@ function parseCaptures(capsCount){
 }
 
 
-/* saveGame - by Mr. M*/
+/* saveGame - see https://gyandeeps.com/json-file-write/
+	and https://stackoverflow.com/questions/21012580/is-it-possible
+	-to-write-data-to-file-using-only-javascript/21012689 */
 function saveGame() {
-	alert("Game downloading....");
+	var FileSaver = require('file-saver');
+	var fileContent = JSON.stringify(turns, null, 4);
+	var fileName=prompt("Name the game - no spaces");
+	FileSaver.saveAs(fileName+".json", fileContent, (err) => {
+		if (err) {
+			console.error(err);
+			return;
+		};
+		console.log("File "+fileName+".json has been created");
+	});
+	var fileContent = JSON.stringify(gameMessages, null, 4);
+	FileSaver.saveAs(fileName+"messages.json", fileContent, (err) => {
+		if (err) {
+			console.error(err);
+			return;
+		};
+		console.log("File "+fileName+"messages.json has also been created");
+	});
 }
