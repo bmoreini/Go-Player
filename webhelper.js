@@ -91,7 +91,12 @@ function buildBoard(){
 
 /* Next Turn works forwards and backwards */
 function nextTurn(){
-	if (turn+1 <= turns.length) {
+	if (turn==0 && builder==true) {
+		placeStone(turn);
+		if (turns[0][3][0]>-1) oldCaptures=removeCaptures(turn);
+		newMessage = showMessage(turn);
+	}
+	else if (turn+1 <= turns.length) {
 		// check for old captures and remove red circles from board
 		if (backwards==false && turn>1 && turns[turn-1][3][0]>-1) oldCaptures=removeColoredCaptures(oldCaptures);
 		// place new stone with color of current turn or empty if going backwards
@@ -104,7 +109,7 @@ function nextTurn(){
 		else if (backwards==true && turns[turn-1][3][0]>-1) oldCaptures=addUncaptured(turn-1);
 		// closing the else's
 		else oldCaptures=[];
-		message = (backwards==false) ? showMessage(turn) : showMessage(turn-1);
+		newMessage = (backwards==false) ? showMessage(turn) : showMessage(turn-1);
 	}
 	else alert("End of game.");
 }
@@ -181,7 +186,7 @@ function addUncaptured(turn){
 	captures=createCapturesArray(turn);
 	color=turns[turn-1][2];
 	colorCaptures(captures,color);
-	let capScore=captures.length
+	let capScore=captures.length;
 	addCapturesToScore(captures,turns[turn][2]);
 	oldCaptures=[];
 	return oldCaptures;
@@ -240,15 +245,15 @@ function refreshBox(element,newValue,type){
 function showMessage(turn){
 	// cycle through all messages
 	let messageMatch=0;
-	message="";
+	newMessage="";
 	while (messageMatch < gameMessages.length){
 		// see if there is a message for this turn
-		if (gameMessages[messageMatch][0]==turn+1) {
-			message=gameMessages[messageMatch][1];
+		if (gameMessages[messageMatch][0]==turn) {
+			newMessage=gameMessages[messageMatch][1];
 		}
 		messageMatch++;
 	}
-	refreshBox(messages,message,"text");
-	return message;
+	refreshBox(messages,newMessage,"text");
+	return newMessage;
 }
 
