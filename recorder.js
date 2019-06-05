@@ -1,10 +1,7 @@
 /* New Globals */
-var newGame = [];
 var thisColor="b";
 var thisTurnArray=[];
 var builder = false;
-var tM=("This turn: ");
-var turn=-1;
 
 /* Save Form Processing */
 var recTurn = document.getElementById("thisTurn");
@@ -32,7 +29,6 @@ function recordTurns(){
 		gameMessages=trimMessages();
 		color = (turn%2==0) ? "b" : "w";
 	}
-	//document.getElementById("recForm").reset();
 	refreshSubmitForm();
 	recButton.setAttribute("id", "save");
 	recButton.setAttribute( "onClick", "saveGame()");
@@ -52,11 +48,11 @@ function refreshSubmitForm(){
 	turn++;
 	color = (turn%2==0) ? "b" : "w";
 	whoNext.innerHTML=turn+" : "+color+" : row,col? <span class=\"req\">*</span>";
-	document.getElementById("submitTurn").reset();
 }
 
 /* save a new turn with the form using tM as an alert */
 function saveTurn(){
+
 	if (recTurn.value) {
 		let tempTurn=savePosition(recTurn.value);
 		//tM=tM.concat(turn + " stone: "+tempTurn.join(","));
@@ -75,10 +71,6 @@ function saveTurn(){
 		//tM=tM.concat(JSON.stringify(tempCaptures));
 	}
 	else turns[turn].push([]);
-	if (backwards==true) {
-		backwards=false;
-		color=turns[turn][2];
-	}
 	nextTurn();
 	refreshSubmitForm();
 }
@@ -112,29 +104,8 @@ function parseCaptures(capsCount){
 }
 
 
-/* saveGame - see https://gyandeeps.com/json-file-write/
-	and https://stackoverflow.com/questions/21012580/is-it-possible
-	-to-write-data-to-file-using-only-javascript/21012689 */
+/* saveGame */
 function saveGame() {
 	showTurns();
-	/*
-	var FileSaver = require('file-saver');
-	var fileContent = JSON.stringify(turns, null, 4);
-	var fileName=prompt("Name the game - no spaces");
-	FileSaver.saveAs(fileName+".json", fileContent, (err) => {
-		if (err) {
-			console.error(err);
-			return;
-		};
-		console.log("File "+fileName+".json has been created");
-	});
-	var fileContent = JSON.stringify(gameMessages, null, 4);
-	FileSaver.saveAs(fileName+"messages.json", fileContent, (err) => {
-		if (err) {
-			console.error(err);
-			return;
-		};
-		console.log("File "+fileName+"messages.json has also been created");
-	});
-	*/
+	showMessages();
 }
