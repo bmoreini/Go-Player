@@ -15,7 +15,6 @@ var capStones = document.getElementById("thisCapturedStones");
 /* recordTurns - by Mr. M */
 function recordTurns(){
 	builder=true;
-	recForm.classList.remove("hide");
 	let fresh=prompt("New game (n) or add to this one (a)?");
 	if (fresh=="n"){
 		buildBoard();
@@ -29,6 +28,7 @@ function recordTurns(){
 		gameMessages=trimMessages();
 		color = (turn%2==0) ? "b" : "w";
 	}
+	recForm.classList.remove("hide");
 	refreshSubmitForm();
 	recButton.setAttribute("id", "save");
 	recButton.setAttribute( "onClick", "saveGame()");
@@ -46,13 +46,16 @@ function trimMessages(){
 /* show color and turn for each new turn submission */
 function refreshSubmitForm(){
 	turn++;
+	recTurn.value="";
+	message.value="";
+	newCaps.value="";
+	capStones.value="";
 	color = (turn%2==0) ? "b" : "w";
 	whoNext.innerHTML=turn+" : "+color+" : row,col? <span class=\"req\">*</span>";
 }
 
 /* save a new turn with the form using tM as an alert */
 function saveTurn(){
-
 	if (recTurn.value) {
 		let tempTurn=savePosition(recTurn.value);
 		//tM=tM.concat(turn + " stone: "+tempTurn.join(","));
@@ -108,4 +111,8 @@ function parseCaptures(capsCount){
 function saveGame() {
 	showTurns();
 	showMessages();
+	recForm.classList.add("hide");
+	refreshSubmitForm();
+	recButton.setAttribute("id", "recorder");
+	recButton.setAttribute( "onClick", "recordTurns()");
 }

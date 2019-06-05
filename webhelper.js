@@ -109,6 +109,9 @@ function nextTurn(){
 	else if (turn==turns.length && builder==false){
 		alert("End of game.");
 	}
+	else if (turn==turns.length && builder==true){
+		alert("Submit next new turn.");
+	}
 	else if (turn==0 && backwards==true){
 		alert("Start of game.");
 	}
@@ -120,6 +123,7 @@ function nextTurn(){
 		// check for new captures going forwards and remove them, leaving red circles
 		if (backwards==false && turns[turn][3][0]>-1) oldCaptures=removeCaptures(turn);
 		// check for old captures going backwards and add red circles
+		else if (backwards==true && turn==1) oldCaptures=removeCaptures(turn);
 		else if (backwards==true && turns[turn-2][3][0]>-1) oldCaptures=addRedCaptures(turn-2);
 		// check for new captures going backwards and add black or white circles
 		else if (backwards==true && turns[turn-1][3][0]>-1) oldCaptures=addUncaptured(turn-1);
