@@ -32,6 +32,7 @@ function recordTurns(){
 		gameMessages=trimMessages();
 		color = (turn%2==0) ? "b" : "w";
 	}
+	//document.getElementById("recForm").reset();
 	refreshSubmitForm();
 	recButton.setAttribute("id", "save");
 	recButton.setAttribute( "onClick", "saveGame()");
@@ -51,11 +52,11 @@ function refreshSubmitForm(){
 	turn++;
 	color = (turn%2==0) ? "b" : "w";
 	whoNext.innerHTML=turn+" : "+color+" : row,col? <span class=\"req\">*</span>";
+	document.getElementById("submitTurn").reset();
 }
 
 /* save a new turn with the form using tM as an alert */
 function saveTurn(){
-
 	if (recTurn.value) {
 		let tempTurn=savePosition(recTurn.value);
 		//tM=tM.concat(turn + " stone: "+tempTurn.join(","));
@@ -74,6 +75,10 @@ function saveTurn(){
 		//tM=tM.concat(JSON.stringify(tempCaptures));
 	}
 	else turns[turn].push([]);
+	if (backwards==true) {
+		backwards=false;
+		color=turns[turn][2];
+	}
 	nextTurn();
 	refreshSubmitForm();
 }

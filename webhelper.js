@@ -47,8 +47,13 @@ function main() {
 }
 
 function reverseMain(){
-	if(backwards==false){
+	if(backwards==false && builder==false){
 		backwards=true;
+		removeLastTurn();
+	}
+	else if (backwards==false && builder==true){
+		backwards=true;
+		turn--;
 		removeLastTurn();
 	}
 	else{
@@ -96,12 +101,18 @@ function buildBoard(){
 
 /* Next Turn works forwards and backwards */
 function nextTurn(){
-	if (turn==0 && builder==true) {
+	if (turn==0 && backwards==false && builder==true) {
 		placeStone(turn);
 		if (turns[0][3][0]>-1) oldCaptures=removeCaptures(turn);
 		newMessage = showMessage(turn);
 	}
-	else if (turn+1 <= turns.length) {
+	else if (turn==turns.length && builder==false){
+		alert("End of game.");
+	}
+	else if (turn==0 && backwards==true){
+		alert("Start of game.");
+	}
+	else if (turn+1 <= turns.length && builder == false || builder==true) {
 		// check for old captures and remove red circles from board
 		if (backwards==false && turn>1 && turns[turn-1][3][0]>-1) oldCaptures=removeColoredCaptures(oldCaptures);
 		// place new stone with color of current turn or empty if going backwards
@@ -116,7 +127,7 @@ function nextTurn(){
 		else oldCaptures=[];
 		newMessage = (backwards==false) ? showMessage(turn) : showMessage(turn-1);
 	}
-	else alert("End of game.");
+	else alert("Something is wrong with nextTurn");
 }
 
 /* Get Stone Count works the same forwards and backwards */
@@ -138,6 +149,7 @@ function placeStone(turn){
 	// determine color based on function parameter indicating next / previous
 	newStone.className = color;
 	console.log("Turn: "+(turn+1)+" row: "+row+" column: "+column+" color: "+color);
+	if (builder==true && backwards==true) turn--;
 }
 
 /* Remove Captures works forwards only */
